@@ -1,0 +1,33 @@
+version: '3'
+services:
+  redis:
+    expose:
+      - 6379
+    ports:
+      - "63793:6379"
+    image: "redis:alpine"
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5441:5432
+  my-mongoDB:
+    image: mongo:latest
+    volumes:
+      - db-data:/data/db
+      - mongo-config:/data/configdb
+volumes:
+  db-data:
+  mongo-config:
+  postgres-data:
+      #  nginx:
+#    image: nginx
+#    ports:
+#      - 8000:80
+#    volumes:
+#      - ./html:/usr/share/nginx/html
+      #- ./nginx/nginx.conf:/etc/nginx/nginx.conf

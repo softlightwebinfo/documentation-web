@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@codeunic/library-ui": "^0.0.1",
+    "recharts": "^1.8.5"
+  }
+}

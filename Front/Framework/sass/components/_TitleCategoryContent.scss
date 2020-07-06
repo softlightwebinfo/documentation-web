@@ -1,0 +1,10 @@
+.TitleCategoryContent {
+  .Grid-component {
+    .Card-component {
+      &:hover {
+        opacity: .5;
+        cursor: pointer;
+      }
+    }
+  }
+}

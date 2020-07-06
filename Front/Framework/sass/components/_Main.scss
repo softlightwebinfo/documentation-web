@@ -1,0 +1,20 @@
+.Main-template {
+
+}
+
+.Main {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 56px;
+  overflow: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  > .Container-component {
+    display: flex;
+    flex: 1;
+    height: 100%;
+  }
+}
