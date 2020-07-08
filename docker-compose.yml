@@ -17,6 +17,8 @@ services:
       - 5441:5432
   my-mongoDB:
     image: mongo:latest
+    ports:
+      - 27018:27017
     volumes:
       - db-data:/data/db
       - mongo-config:/data/configdb
