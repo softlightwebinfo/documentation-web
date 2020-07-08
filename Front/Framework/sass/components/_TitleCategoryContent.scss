@@ -1,10 +1,34 @@
 .TitleCategoryContent {
+  a {
+    text-decoration: none;
+  }
+
+  &__content {
+    margin: -2px;
+
+    .Badge-component {
+      margin: 2px;
+      margin-right: 2px !important;
+
+      &:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+    }
+  }
+
   .Grid-component {
     .Card-component {
       &:hover {
         opacity: .5;
         cursor: pointer;
       }
+    }
+  }
+
+  &-badge--selected {
+    span {
+      background-color: white!important;
     }
   }
 }

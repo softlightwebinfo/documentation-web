@@ -1347,10 +1347,10 @@
   resolved "https://registry.yarnpkg.com/@base2/pretty-print-object/-/pretty-print-object-1.0.0.tgz#860ce718b0b73f4009e153541faff2cb6b85d047"
   integrity sha512-4Th98KlMHr5+JkxfcoDT//6vY8vM+iSPrLNpHhRyLx2CFYi8e2RfqPLdpbnpo0Q5lQC5hNB79yes07zb02fvCw==
 
-"@codeunic/library-ui@^0.9.7":
-  version "0.9.7"
-  resolved "https://registry.yarnpkg.com/@codeunic/library-ui/-/library-ui-0.9.7.tgz#4abc61dcb28a71b5812bcce33640dcd6eac15f3a"
-  integrity sha512-1y9kxcV2CchK3BK1LebTsfXoyOPOV85LNFW0xwwxbX3bEfWqbwmab7tQQfpEyNN3hGwJQvnyWr2vHCgB3TqDnw==
+"@codeunic/library-ui@^0.9.9":
+  version "0.9.9"
+  resolved "https://registry.yarnpkg.com/@codeunic/library-ui/-/library-ui-0.9.9.tgz#240d9057e1a21a08a5c120748b6f670be188ad29"
+  integrity sha512-mRZb+2erVbe5cAsJZG6iYkf9e2uxbwf14NHEAHScra1IBLW12t3RVyKRRk31ON3Z4yArlFUOutVYzLaJmdjUxQ==
   dependencies:
     "@babel/core" "^7.10.2"
     "@storybook/addon-a11y" "^5.3.19"

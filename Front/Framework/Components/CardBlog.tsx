@@ -5,6 +5,9 @@ import {ICardBlog} from "../Props/ICardBlog";
 import {Link} from '../../server/routes';
 
 export const CardBlog = (props: ICardBlog) => {
+    const description = () => (
+        props.description.length > 200 ? props.description.slice(0, 200) + '...' : props.description
+    );
 
     return (
         <CardComponent>
@@ -13,7 +16,7 @@ export const CardBlog = (props: ICardBlog) => {
                 avatar={<AvatarComponent>Ad</AvatarComponent>}
             />
             <CardContentComponent>
-                <TypographyComponent component={"p"}>{props.description}</TypographyComponent>
+                <TypographyComponent component={"p"}>{description()}</TypographyComponent>
                 <div style={{marginTop: 15}}>
                     {props.tags.map((tag, index) => (
                         // @ts-ignore

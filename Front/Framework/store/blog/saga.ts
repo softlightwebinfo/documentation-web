@@ -1,6 +1,6 @@
 import {put} from 'redux-saga/effects'
 import {getApi} from "../../../settings";
-import {ActionBlogCreateFailed, ActionBlogCreateSuccess, ActionBlogListFailed, ActionBlogListItemFailed, ActionBlogListItemSuccess, ActionBlogListSuccess} from "./actions";
+import {ActionBlogCreateFailed, ActionBlogCreateSuccess, ActionBlogListFailed, ActionBlogListItemFailed, ActionBlogListItemSuccess, ActionBlogListSuccess, ActionBlogListTagFailed, ActionBlogListTagSuccess, ActionBlogTagsFailed, ActionBlogTagsSuccess} from "./actions";
 //require('es6-promise').polyfill();
 //require('isomorphic-fetch');
 export function* blogCreateSaga(data) {
@@ -37,5 +37,25 @@ export function* blogListItemSaga(data) {
         yield put(ActionBlogListItemSuccess(response));
     } catch (err) {
         yield put(ActionBlogListItemFailed());
+    }
+}
+
+export function* blogListTagItemSaga(data) {
+    try {
+        const res = yield fetch(getApi(`tag/${data.data}`));
+        const response = yield res.json();
+        yield put(ActionBlogListTagSuccess(response));
+    } catch (err) {
+        yield put(ActionBlogListTagFailed());
+    }
+}
+
+export function* blogTagsSaga(data) {
+    try {
+        const res = yield fetch(getApi(`tags`));
+        const response = yield res.json();
+        yield put(ActionBlogTagsSuccess(response));
+    } catch (err) {
+        yield put(ActionBlogTagsFailed());
     }
 }

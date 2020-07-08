@@ -1,0 +1,15 @@
+.Main {
+  .CardBlogParent {
+    display: flex;
+
+    .Card-component {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .CardContent-component {
+      flex: 1;
+    }
+  }
+}

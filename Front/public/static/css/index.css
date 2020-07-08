@@ -432,9 +432,24 @@ body {
   .PlusButton svg {
     font-size: 44px; }
 
+.TitleCategoryContent a {
+  text-decoration: none; }
+
+.TitleCategoryContent__content {
+  margin: -2px; }
+  .TitleCategoryContent__content .Badge-component {
+    margin: 2px;
+    margin-right: 2px !important; }
+    .TitleCategoryContent__content .Badge-component:hover {
+      cursor: pointer;
+      opacity: .8; }
+
 .TitleCategoryContent .Grid-component .Card-component:hover {
   opacity: .5;
   cursor: pointer; }
+
+.TitleCategoryContent-badge--selected span {
+  background-color: white !important; }
 
 .Page {
   display: flex;
@@ -444,3 +459,12 @@ body {
     width: 100%;
     overflow: auto;
     height: 100%; }
+
+.Main .CardBlogParent {
+  display: flex; }
+  .Main .CardBlogParent .Card-component {
+    display: flex;
+    flex-direction: column;
+    width: 100%; }
+  .Main .CardBlogParent .CardContent-component {
+    flex: 1; }

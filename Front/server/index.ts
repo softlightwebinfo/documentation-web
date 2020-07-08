@@ -38,11 +38,41 @@ app.prepare().then(() => {
     server.use(express.static(path.join(__dirname, 'public')));
 
     server.get("/api/articles", async (_, res) => {
-        const all = await Article.find({});
+        const all = await Article.find({}).sort({created: -1});
         return res.status(200).json(all);
+    });
+    server.get("/api/tags", async (_, res) => {
+        const all = await Article.aggregate([
+            {
+                "$group": {
+                    "_id": null,
+                    "tags": {"$addToSet": "$tags"}
+                },
+            },
+            {
+                "$addFields": {
+                    "tags": {
+                        "$reduce": {
+                            "input": "$tags",
+                            "initialValue": [],
+                            "in": {"$setUnion": ["$$value", "$$this"]}
+                        }
+                    }
+                }
+            }
+        ]);
+        return res.status(200).json(all[0]);
     });
     server.get("/api/article/:id", async (req, res) => {
         const all = await Article.findById(req.params.id);
+        return res.status(200).json(all);
+    });
+    server.get("/api/tag/:tag", async (req, res) => {
+        // @ts-ignore
+        const {tag} = req.params;
+        const all = await Article.find({
+            tags: {$all: [tag]}
+        });
         return res.status(200).json(all);
     });
     server.post("/api/article", async (req, res) => {

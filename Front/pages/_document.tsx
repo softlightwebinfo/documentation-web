@@ -4,6 +4,7 @@ import Document, {Head, Main, NextScript} from 'next/document';
 import {IDocument} from "../Framework/Props/Document";
 
 export default class MyDocument extends Document<IDocument> {
+
     render() {
         return (
             <html lang="en">

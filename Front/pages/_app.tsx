@@ -2,23 +2,12 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import {wrapper} from "../Framework/store/store";
-import {END} from 'redux-saga'
 
 class MyApp extends App {
     static async getInitialProps({Component, ctx}) {
         const pageProps = {
             ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {}),
         };
-
-        if (ctx.req) {
-//            ctx.store.dispatch(ActionInitialLogin(ctx));
-            ctx.store.dispatch(END);
-            await ctx.store.sagaTask.toPromise()
-        } else {
-            //          ctx.store.dispatch(ActionInitialLogin(ctx));
-            ctx.store.dispatch(END);
-            await ctx.store.sagaTask.toPromise()
-        }
 
         return {pageProps}
     }
