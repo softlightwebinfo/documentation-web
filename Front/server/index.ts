@@ -6,12 +6,16 @@ import * as fs from "fs";
 
 const multer = require('multer');
 // @ts-ignore
-const sharp = require('sharp')
+const sharp = require('sharp');
 const routes = require('./routes');
 const app = next({dev: process.env.NODE_ENV !== 'production'});
 const handler = routes.getRequestHandler(app);
 const cookieParser = require('cookie-parser');
+import {Article} from "./models/ArticleModel";
 
+let mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27018/documentation', {useNewUrlParser: true, useUnifiedTopology: true});
 
 // @ts-ignore
 let storage = multer.diskStorage({
@@ -33,6 +37,25 @@ app.prepare().then(() => {
     server.use(cookieParser());
     server.use(express.static(path.join(__dirname, 'public')));
 
+    server.get("/api/articles", async (_, res) => {
+        const all = await Article.find({});
+        return res.status(200).json(all);
+    });
+    server.get("/api/article/:id", async (req, res) => {
+        const all = await Article.findById(req.params.id);
+        return res.status(200).json(all);
+    });
+    server.post("/api/article", async (req, res) => {
+        const data = req.body.data;
+        let obj = {
+            ...data,
+            slug: data.title.split(' ').map(i => i.toLowerCase()).join('-'),
+            published: true,
+        };
+        let a = new Article(obj);
+        let save = await a.save();
+        return res.status(200).json(save);
+    });
     server.use(handler).listen(3000)
 });
 

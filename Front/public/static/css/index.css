@@ -432,20 +432,6 @@ body {
   .PlusButton svg {
     font-size: 44px; }
 
-.Main {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 56px;
-  overflow: auto;
-  padding-top: 20px;
-  padding-bottom: 20px; }
-  .Main > .Container-component {
-    display: flex;
-    flex: 1;
-    height: 100%; }
-
 .TitleCategoryContent .Grid-component .Card-component:hover {
   opacity: .5;
   cursor: pointer; }

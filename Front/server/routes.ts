@@ -4,5 +4,5 @@ const route = routes();
 // Name   Page      Pattern
 module.exports = route
     .add({name: 'index', pattern: '/', page: 'index'})
-    .add("register", "/register")
-    .add("login", "/login");
+    .add("blog", "/blog/:id/:slug")
+    .add("new", "/new");

@@ -1,6 +1,8 @@
 import {ITemplateProps} from "../Props/ITemplateProps";
 import * as React from "react";
-import {AppBarComponent, ButtonComponent, ButtonIconComponent, IconComponent, ToolbarComponent, TypographyComponent} from "@codeunic/library-ui/build";
+import {AppBarComponent, ButtonIconComponent, IconComponent, ToolbarComponent, TypographyComponent} from "@codeunic/library-ui/build";
+// @ts-ignore
+import {Link} from '../../server/routes';
 
 export const Template = (props: ITemplateProps) => (
     <div className={"Main-template"}>
@@ -19,14 +21,13 @@ export const Template = (props: ITemplateProps) => (
                     }}
                     variant="h6"
                 >
-                    News
+                    {props.title.length > 60 ? props.title.slice(0, 60) + '...' : props.title}
                 </TypographyComponent>
-                <ButtonComponent onClick={() => console.log()} theme="inherit">
-                    Crear Pagina
-                </ButtonComponent>
-                <ButtonComponent onClick={() => console.log()} theme="inherit">
-                    Login
-                </ButtonComponent>
+                <Link to="/">
+                    <a style={{textDecoration: "none", color: "black"}}>
+                        INICIO
+                    </a>
+                </Link>
             </ToolbarComponent>
         </AppBarComponent>
         <main className={"Main"}>
