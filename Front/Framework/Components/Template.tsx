@@ -3,9 +3,13 @@ import * as React from "react";
 import {AppBarComponent, ToolbarComponent, TypographyComponent} from "@codeunic/library-ui/build";
 // @ts-ignore
 import {Router, Link} from '../../server/routes';
+import Head from 'next/head';
 
 export const Template = (props: ITemplateProps) => (
     <div className={"Main-template"}>
+        <Head>
+            <title>{props.title}</title>
+        </Head>
         <AppBarComponent position={"static"}>
             <ToolbarComponent regular={true} gutters={true}>
                 <TypographyComponent
@@ -18,8 +22,13 @@ export const Template = (props: ITemplateProps) => (
                 >
                     {props.title.length > 60 ? props.title.slice(0, 60) + '...' : props.title}
                 </TypographyComponent>
-                <Link to="/">
+                <Link to="/list">
                     <a style={{textDecoration: "none", color: "black"}}>
+                        LISTA
+                    </a>
+                </Link>
+                <Link to="/">
+                    <a style={{textDecoration: "none", color: "black", marginLeft: 20}}>
                         INICIO
                     </a>
                 </Link>

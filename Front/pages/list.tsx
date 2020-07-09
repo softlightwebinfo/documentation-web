@@ -1,13 +1,11 @@
 import * as React from "react";
 import {Template} from "../Framework/Components/Template";
-import {BadgeComponent, ContainerComponent, GridComponent} from "@codeunic/library-ui/build";
+import {BadgeComponent, CardComponent, CardContentComponent, ContainerComponent, GridComponent, TypographyComponent} from "@codeunic/library-ui/build";
 import {TitleCategoryContent} from "../Framework/Components/TitleCategoryContent";
 import {Component} from "react";
 import {connect} from 'react-redux';
 import {END} from "redux-saga";
 import {ActionBlogList, ActionBlogListTag, ActionBlogTags} from "../Framework/store/blog";
-import {CardBlog} from "../Framework/Components/CardBlog";
-import moment from 'moment';
 // @ts-ignore
 import {Link} from '../server/routes';
 
@@ -48,20 +46,19 @@ class Index extends Component<{
                 <ContainerComponent fixed maxWidth={false}>
                     <GridComponent spacing={4} item container>
                         <GridComponent item xs={12} sm={12} md={9} xl={10}>
-                            <GridComponent spacing={4} item container>
-                                {this.props.blogs.map((blog) => (
-                                    <GridComponent key={blog._id} item xs={12} sm={12} md={4} xl={3} className={"CardBlogParent"}>
-                                        <CardBlog
-                                            _id={blog._id}
-                                            slug={blog.slug}
-                                            title={blog.title}
-                                            subTitle={moment(blog.created).format("DD/MM/YYYY HH:mm")}
-                                            description={blog.description}
-                                            tags={blog.tags}
-                                        />
-                                    </GridComponent>
-                                ))}
-                            </GridComponent>
+                            {this.props.blogs.map((blog, index) => (
+                                <Link to={"blog"} params={{id: blog._id, slug: blog.slug}} key={blog._id}>
+                                    <a>
+                                        <CardComponent style={{marginBottom: 5}}>
+                                            <CardContentComponent>
+                                                <TypographyComponent>
+                                                    {blog.title}
+                                                </TypographyComponent>
+                                            </CardContentComponent>
+                                        </CardComponent>
+                                    </a>
+                                </Link>
+                            ))}
                         </GridComponent>
                         <GridComponent item xs={12} sm={12} md={3} xl={2}>
                             <div>
@@ -69,7 +66,7 @@ class Index extends Component<{
                                     label={"Categorias"}
                                 >
                                     {["Todos", ...this.props.tags].map((tag, index) => (
-                                        <Link to={"tag"} params={{tag: tag}} key={index}>
+                                        <Link to={"list-tag"} params={{tag: tag}} key={index}>
                                             <a className={this.props.tag == tag || (tag == "Todos" && this.props.tag == undefined) ? "TitleCategoryContent-badge--selected" : null}>
                                                 <BadgeComponent style={{marginRight: 5}} badgeContent={tag}/>
                                             </a>

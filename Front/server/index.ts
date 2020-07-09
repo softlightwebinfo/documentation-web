@@ -86,6 +86,6 @@ app.prepare().then(() => {
         let save = await a.save();
         return res.status(200).json(save);
     });
-    server.use(handler).listen(3000)
+    server.use(handler).listen(3020)
 });
 

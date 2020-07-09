@@ -6,4 +6,6 @@ module.exports = route
     .add({name: 'index', pattern: '/', page: 'index'})
     .add("blog", "/blog/:id/:slug")
     .add("tag", "/tag/:tag", "index")
-    .add("new", "/new");
+    .add("list-tag", "/list/:tag", "list")
+    .add("new", "/new")
+    .add("list", "/list");
