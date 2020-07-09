@@ -8,7 +8,7 @@ export const CardBlog = (props: ICardBlog) => {
     const description = () => (
         props.description.length > 200 ? props.description.slice(0, 200) + '...' : props.description
     );
-
+    const {actions = []} = props;
     return (
         <CardComponent>
             <CardHeaderComponent
@@ -33,6 +33,7 @@ export const CardBlog = (props: ICardBlog) => {
                     </a>
                 </Link>
             </CardActionAreaComponent>
+            <div>{actions}</div>
         </CardComponent>
     );
 };

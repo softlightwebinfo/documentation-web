@@ -1,26 +1,31 @@
 import * as React from "react";
-import {Template} from "../Framework/Components/Template";
-import {ButtonComponent, ContainerComponent, DialogActionsComponent, DialogComponent, DialogContentComponent, DialogTitleComponent, DialogContentTextComponent, EditorComponent, TextFieldComponent} from "@codeunic/library-ui/build";
 import {Component} from "react";
 import {connect} from 'react-redux';
-import {ActionBlogCreate} from "../Framework/store/blog";
-// @ts-ignore
-import {Router} from '../server/routes';
-import {parseCookies} from "nookies";
 import {END} from "redux-saga";
+// @ts-ignore
+import {Router, Link} from '../server/routes';
+import {parseCookies} from "nookies";
+import {TemplateDashboard} from "../Framework/Components/TemplateDashboard";
+import {ActionBlogListItem, ActionBlogUpdate} from "../Framework/store/blog";
+import {ButtonComponent, ContainerComponent, DialogActionsComponent, DialogComponent, DialogContentComponent, DialogContentTextComponent, DialogTitleComponent, EditorComponent, TextFieldComponent} from "@codeunic/library-ui/build";
 
 class Index extends Component<{
+    login: boolean;
+    blog: any;
     dispatch: any;
 }> {
     static async getInitialProps(ctx) {
         const cookies = parseCookies(ctx);
+        ctx.store.dispatch(ActionBlogListItem(ctx.query.id));
+
         if (ctx.req) {
             ctx.store.dispatch(END);
             await ctx.store.sagaTask.toPromise();
         }
-        const login = !!cookies.auth || false
+        const login = !!cookies.auth || false;
         if (!login) {
             ctx.res.redirect("/");
+            return {};
         }
         return {
             login,
@@ -30,16 +35,13 @@ class Index extends Component<{
 
     state = {
         openModalSave: false,
-        description: "",
-        title: "",
-        tags: [],
+        description: this.props.blog.description || "",
+        title: this.props.blog.title || "",
+        tags: this.props.blog.tags || [],
         editor: null,
+        content: this.props.blog.content || [],
+        id: null,
     };
-
-    constructor(props) {
-        super(props);
-    }
-
     handleClose = () => {
         this.setState({
             openModalSave: false,
@@ -64,17 +66,35 @@ class Index extends Component<{
             return alert("Escribe una descripción corta")
         }
         // @ts-ignore
-        this.props.dispatch(ActionBlogCreate(data));
-        Router.pushRoute("/")
+        this.props.dispatch(ActionBlogUpdate(data, this.props.blog._id));
+        Router.pushRoute("dashboard");
     };
+
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidUpdate(prevProps): void {
+        if (this.props.blog._id != prevProps.blog._id) {
+            this.setState({
+                title: this.props.blog.title,
+                description: this.props.blog.description,
+                tags: this.props.blog.tags,
+                content: this.props.blog.content,
+                id: this.props.blog._id
+            });
+        }
+    }
 
     render() {
         return (
-            <Template
-                title={"Crear nueva pagina"}
+            <TemplateDashboard
+                title={"Listado de blogs"}
             >
                 <ContainerComponent fixed maxWidth={false}>
                     <EditorComponent
+                        key={this.state.id}
                         isEditor={true}
                         onSave={(e) => {
                             this.setState({
@@ -82,7 +102,7 @@ class Index extends Component<{
                                 openModalSave: true,
                             })
                         }}
-                        data={[]}
+                        data={this.state.content || []}
                     />
                 </ContainerComponent>
                 <DialogComponent open={this.state.openModalSave} onClose={this.handleClose} portal={true}>
@@ -117,9 +137,13 @@ class Index extends Component<{
                         </ButtonComponent>
                     </DialogActionsComponent>
                 </DialogComponent>
-            </Template>
+            </TemplateDashboard>
         );
     }
 }
 
-export default connect(state => state)(Index);
+export default connect(state => ({
+    blog: state.blog.blog || {},
+    blogs: state.blog.blogs || [],
+    tags: state.blog.tags || []
+}))(Index)

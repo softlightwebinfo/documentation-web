@@ -9,4 +9,7 @@ module.exports = route
     .add("tag", "/tag/:tag", "index")
     .add("list-tag", "/list/:tag", "list")
     .add("new", "/new")
+    .add("dashboard", "/dashboard")
+    .add("dashboard-list", "/dashboard/list")
+    .add("dashboard-edit", "/dashboard/edit/:id")
     .add("list", "/list");

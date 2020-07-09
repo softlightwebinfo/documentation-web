@@ -4,7 +4,7 @@ import es6promise from 'es6-promise'
 import {actionTypes as actionTypeExample} from './example/actions'
 import {loadDataSaga} from "./example/saga";
 import {authRegisterUserSaga, actionTypes as actionTypeUser, authLoginUserSaga, authInitialUserSaga, authLogoutUserSaga} from "./user";
-import {blogCreateSaga, actionTypes as actionBlog, blogListSaga, blogListItemSaga, blogTagsSaga, blogListTagItemSaga} from "./blog";
+import {blogCreateSaga, actionTypes as actionBlog, blogListSaga, blogListItemSaga, blogTagsSaga, blogListTagItemSaga, blogUpdateSaga, blogDeleteSaga} from "./blog";
 
 es6promise.polyfill();
 
@@ -22,6 +22,8 @@ function* rootSaga() {
         takeLatest(actionBlog.BLOG_LIST_ITEM, blogListItemSaga),
         takeLatest(actionBlog.BLOG_TAGS, blogTagsSaga),
         takeLatest(actionBlog.BLOG_LIST_TAG, blogListTagItemSaga),
+        takeLatest(actionBlog.BLOG_UPDATE, blogUpdateSaga),
+        takeLatest(actionBlog.BLOG_DELETE, blogDeleteSaga),
     ])
 }
 

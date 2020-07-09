@@ -67,6 +67,25 @@ app.prepare().then(() => {
         const all = await Article.findById(req.params.id);
         return res.status(200).json(all);
     });
+    server.put("/api/article/:id", async (req, res) => {
+        const data = req.body.data;
+        let obj = {
+            ...data,
+            slug: data.title.split(' ').map(i => i.toLowerCase()).join('-'),
+            published: true,
+        };
+        mongoose.set('useFindAndModify', false);
+        const save = await Article.findByIdAndUpdate(req.params.id, {$set: obj}, {new: true});
+        return res.status(200).json(save);
+    });
+    server.delete("/api/article/:id", async (req, res) => {
+        const {id} = req.params;
+        mongoose.set('useFindAndModify', false);
+        Article.findByIdAndRemove(id, (err, article) => {
+            if (err) return res.status(500).send(err);
+            return res.status(200).json(article);
+        });
+    });
     server.get("/api/tag/:tag", async (req, res) => {
         // @ts-ignore
         const {tag} = req.params;

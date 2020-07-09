@@ -4,6 +4,9 @@ export const actionTypes = {
     BLOG_CREATE: 'BLOG_CREATE',
     BLOG_CREATE_SUCCESS: 'BLOG_CREATE_SUCCESS',
     BLOG_CREATE_FAILED: 'BLOG_CREATE_FAILED',
+    BLOG_UPDATE: 'BLOG_UPDATE',
+    BLOG_UPDATE_SUCCESS: 'BLOG_UPDATE_SUCCESS',
+    BLOG_UPDATE_FAILED: 'BLOG_UPDATE_FAILED',
     BLOG_LIST: 'BLOG_LIST',
     BLOG_LIST_SUCCESS: 'BLOG_LIST_SUCCESS',
     BLOG_LIST_FAILED: 'BLOG_LIST_FAILED',
@@ -16,11 +19,18 @@ export const actionTypes = {
     BLOG_LIST_TAG: 'BLOG_LIST_TAG',
     BLOG_LIST_TAG_SUCCESS: 'BLOG_LIST_TAG_SUCCESS',
     BLOG_LIST_TAG_FAILED: 'BLOG_LIST_TAG_FAILED',
+    BLOG_DELETE: 'BLOG_DELETE',
+    BLOG_DELETE_SUCCESS: 'BLOG_DELETE_SUCCESS',
+    BLOG_DELETE_FAILED: 'BLOG_DELETE_FAILED',
 };
 
 export const ActionBlogCreate = (data: IDataBlogCreate) => ({type: actionTypes.BLOG_CREATE, data});
 export const ActionBlogCreateSuccess = (data) => ({type: actionTypes.BLOG_CREATE_SUCCESS, data});
 export const ActionBlogCreateFailed = () => ({type: actionTypes.BLOG_CREATE_FAILED});
+
+export const ActionBlogUpdate = (data: IDataBlogCreate, id) => ({type: actionTypes.BLOG_UPDATE, data, id});
+export const ActionBlogUpdateSuccess = (data) => ({type: actionTypes.BLOG_UPDATE_SUCCESS, data});
+export const ActionBlogUpdateFailed = () => ({type: actionTypes.BLOG_UPDATE_FAILED});
 
 export const ActionBlogList = () => ({type: actionTypes.BLOG_LIST});
 export const ActionBlogListSuccess = (data) => ({type: actionTypes.BLOG_LIST_SUCCESS, data});
@@ -29,6 +39,10 @@ export const ActionBlogListFailed = () => ({type: actionTypes.BLOG_LIST_FAILED})
 export const ActionBlogListItem = (id) => ({type: actionTypes.BLOG_LIST_ITEM, data: id});
 export const ActionBlogListItemSuccess = (data) => ({type: actionTypes.BLOG_LIST_ITEM_SUCCESS, data});
 export const ActionBlogListItemFailed = () => ({type: actionTypes.BLOG_LIST_ITEM_FAILED});
+
+export const ActionBlogDelete = (id) => ({type: actionTypes.BLOG_DELETE, data: id});
+export const ActionBlogDeleteSuccess = (id) => ({type: actionTypes.BLOG_DELETE_SUCCESS, id: id});
+export const ActionBlogDeleteFailed = () => ({type: actionTypes.BLOG_DELETE_FAILED});
 
 export const ActionBlogTags = () => ({type: actionTypes.BLOG_TAGS});
 export const ActionBlogTagsSuccess = (data) => ({type: actionTypes.BLOG_TAGS_SUCCESS, data: data.tags || []});

@@ -1,6 +1,19 @@
 import {put} from 'redux-saga/effects'
 import {getApi} from "../../../settings";
-import {ActionBlogCreateFailed, ActionBlogCreateSuccess, ActionBlogListFailed, ActionBlogListItemFailed, ActionBlogListItemSuccess, ActionBlogListSuccess, ActionBlogListTagFailed, ActionBlogListTagSuccess, ActionBlogTagsFailed, ActionBlogTagsSuccess} from "./actions";
+import {
+    ActionBlogCreateFailed,
+    ActionBlogCreateSuccess, ActionBlogDeleteFailed, ActionBlogDeleteSuccess,
+    ActionBlogListFailed,
+    ActionBlogListItemFailed,
+    ActionBlogListItemSuccess,
+    ActionBlogListSuccess,
+    ActionBlogListTagFailed,
+    ActionBlogListTagSuccess,
+    ActionBlogTagsFailed,
+    ActionBlogTagsSuccess,
+    ActionBlogUpdateFailed,
+    ActionBlogUpdateSuccess
+} from "./actions";
 //require('es6-promise').polyfill();
 //require('isomorphic-fetch');
 export function* blogCreateSaga(data) {
@@ -17,6 +30,38 @@ export function* blogCreateSaga(data) {
         yield put(ActionBlogCreateSuccess(response));
     } catch (err) {
         yield put(ActionBlogCreateFailed());
+    }
+}
+
+export function* blogDeleteSaga(data) {
+    try {
+        yield fetch(getApi(`article/${data.data}`), {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "DELETE"
+        });
+        yield put(ActionBlogDeleteSuccess(data.data));
+    } catch (err) {
+        yield put(ActionBlogDeleteFailed());
+    }
+}
+
+export function* blogUpdateSaga(data) {
+    try {
+        const res = yield fetch(getApi(`article/${data.id}`), {
+            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "PUT"
+        });
+        const response = yield res.json();
+        yield put(ActionBlogUpdateSuccess(response));
+    } catch (err) {
+        yield put(ActionBlogUpdateFailed());
     }
 }
 

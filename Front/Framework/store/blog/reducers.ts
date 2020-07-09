@@ -35,6 +35,12 @@ function reducers(state = exampleInitialState, action) {
                 tags: action.data,
             }
         }
+        case actionTypes.BLOG_DELETE_SUCCESS: {
+            return {
+                ...state,
+                blogs: state.blogs.filter(i => i._id != action.id)
+            }
+        }
         default:
             return state
     }
