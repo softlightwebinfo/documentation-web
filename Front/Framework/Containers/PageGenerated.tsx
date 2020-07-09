@@ -29,7 +29,7 @@ export class PageGenerated extends Component<{
 
     private content() {
         const {content} = this.props;
-        return content.map((item, index) => {
+        return content.map((item) => {
             switch (item.key) {
                 case"separator": {
                     return (

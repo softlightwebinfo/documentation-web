@@ -1,7 +1,7 @@
 import {Failure, FailureLogin, Success, SuccessLogin, SetLogin} from "./actions";
 import {delay, put} from 'redux-saga/effects'
 import {getApi} from "../../../settings";
-import {parseCookies, destroyCookie} from 'nookies'
+import {destroyCookie} from 'nookies'
 //require('es6-promise').polyfill();
 //require('isomorphic-fetch');
 export function* authRegisterUserSaga(data) {

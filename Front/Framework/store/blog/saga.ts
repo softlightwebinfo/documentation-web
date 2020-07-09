@@ -50,7 +50,7 @@ export function* blogListTagItemSaga(data) {
     }
 }
 
-export function* blogTagsSaga(data) {
+export function* blogTagsSaga() {
     try {
         const res = yield fetch(getApi(`tags`));
         const response = yield res.json();

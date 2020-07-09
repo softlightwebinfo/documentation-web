@@ -46,7 +46,7 @@ class Index extends Component<{
                 <ContainerComponent fixed maxWidth={false}>
                     <GridComponent spacing={4} item container>
                         <GridComponent item xs={12} sm={12} md={9} xl={10}>
-                            {this.props.blogs.map((blog, index) => (
+                            {this.props.blogs.map((blog) => (
                                 <Link to={"blog"} params={{id: blog._id, slug: blog.slug}} key={blog._id}>
                                     <a>
                                         <CardComponent style={{marginBottom: 5}}>
@@ -68,7 +68,10 @@ class Index extends Component<{
                                     {["Todos", ...this.props.tags].map((tag, index) => (
                                         <Link to={"list-tag"} params={{tag: tag}} key={index}>
                                             <a className={this.props.tag == tag || (tag == "Todos" && this.props.tag == undefined) ? "TitleCategoryContent-badge--selected" : null}>
-                                                <BadgeComponent style={{marginRight: 5}} badgeContent={tag}/>
+                                                <BadgeComponent
+                                                    style={{marginRight: 5}}
+                                                    // @ts-ignore
+                                                    badgeContent={tag}/>
                                             </a>
                                         </Link>
                                     ))}

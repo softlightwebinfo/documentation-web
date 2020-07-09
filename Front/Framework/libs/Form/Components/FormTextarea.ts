@@ -1,5 +1,6 @@
 import {FormComponent} from "../FormComponent";
 
+// @ts-ignore
 export class FormTextarea extends FormComponent {
     private readonly _name: string;
     private readonly _title: string;

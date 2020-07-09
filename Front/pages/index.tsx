@@ -71,7 +71,10 @@ class Index extends Component<{
                                     {["Todos", ...this.props.tags].map((tag, index) => (
                                         <Link to={"tag"} params={{tag: tag}} key={index}>
                                             <a className={this.props.tag == tag || (tag == "Todos" && this.props.tag == undefined) ? "TitleCategoryContent-badge--selected" : null}>
-                                                <BadgeComponent style={{marginRight: 5}} badgeContent={tag}/>
+                                                <BadgeComponent
+                                                    style={{marginRight: 5}}
+                                                    // @ts-ignore
+                                                    badgeContent={tag}/>
                                             </a>
                                         </Link>
                                     ))}

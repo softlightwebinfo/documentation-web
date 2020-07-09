@@ -10,9 +10,9 @@ class Index extends Component<{
 }> {
     state = {
         openModalSave: false,
-        description: "Configurar golang en Windows - Mac - linux",
-        title: "Como Configurar Golang en un equipo",
-        tags: ["Golang", "Mac", "Windows"],
+        description: "",
+        title: "",
+        tags: [],
         editor: null,
     };
 
@@ -43,6 +43,7 @@ class Index extends Component<{
         if (!description.length) {
             return alert("Escribe una descripción corta")
         }
+        // @ts-ignore
         this.props.dispatch(ActionBlogCreate(data));
     };
 

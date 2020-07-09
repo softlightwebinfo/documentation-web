@@ -1,6 +1,7 @@
 import {FormComponent} from "../FormComponent";
 import {FormSelectItem} from "./FormSelectItem";
 
+// @ts-ignore
 export class FormSelect extends FormComponent {
     private readonly _name: string;
     private readonly _title: string;

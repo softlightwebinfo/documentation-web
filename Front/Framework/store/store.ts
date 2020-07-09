@@ -14,7 +14,7 @@ const bindMiddleware = (middleware) => {
 };
 
 
-export const makeStore = (context, initialState = {}) => {
+export const makeStore = (_, initialState = {}) => {
     const sagaMiddleware = createSagaMiddleware();
 
     const store = createStore(
@@ -23,6 +23,7 @@ export const makeStore = (context, initialState = {}) => {
         bindMiddleware([sagaMiddleware])
     );
 
+    // @ts-ignore
     store.sagaTask = sagaMiddleware.run(rootSaga)
 
     return store

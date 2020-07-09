@@ -1,3 +1,4 @@
+// @ts-ignore
 const routes = require('next-routes')
 
 const route = routes();
