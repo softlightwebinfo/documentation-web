@@ -17,6 +17,8 @@ export const TemplateDashboard = (props: ITemplateDashboard) => {
             {label: "Listado de paginas", route: "list"},
             {label: "Crear nueva pagina", route: "new"},
             {label: "Listado de paginas", route: "dashboard-list"},
+            {label: "Crear nuevo snippets", route: "new-snippet"},
+            {label: "Listado de snippets", route: "dashboard-snippets"},
         ]
     };
 

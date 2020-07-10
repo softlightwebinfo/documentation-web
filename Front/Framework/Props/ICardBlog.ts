@@ -7,5 +7,6 @@ export interface ICardBlog {
     title: string;
     subTitle: string;
     tags: string[];
+    snippet?: boolean;
     actions?: ReactElement[];
 }

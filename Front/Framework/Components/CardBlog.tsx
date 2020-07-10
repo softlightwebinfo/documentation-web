@@ -25,7 +25,7 @@ export const CardBlog = (props: ICardBlog) => {
                 </div>
             </CardContentComponent>
             <CardActionAreaComponent>
-                <Link to={`blog`} params={{id: props._id, slug: props.slug}}>
+                <Link to={props.snippet ? "snippet" : `blog`} params={{id: props._id, slug: props.slug}}>
                     <a className={"button-component button-component--secondary button-component--color button-component--grouped"}>
                         <span className={"button-component__children"}>
                             Entrar

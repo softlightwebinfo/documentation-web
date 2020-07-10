@@ -22,8 +22,13 @@ export const Template = (props: ITemplateProps) => (
                 >
                     {props.title.length > 60 ? props.title.slice(0, 60) + '...' : props.title}
                 </TypographyComponent>
-                <Link to="/list">
+                <Link to="/snippets">
                     <a style={{textDecoration: "none", color: "black"}}>
+                        SNIPPETS
+                    </a>
+                </Link>
+                <Link to="/list">
+                    <a style={{textDecoration: "none", color: "black", marginLeft: 20}}>
                         LISTA
                     </a>
                 </Link>
